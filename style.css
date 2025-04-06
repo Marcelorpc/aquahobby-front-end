@@ -1,0 +1,164 @@
+:root {
+  font-size: 62.5%;
+
+  --gray-ultra-light-color: #f1f1f1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  list-style: none;
+}
+
+body {
+  background-color: var(--gray-ultra-light-color);
+}
+
+header {
+  height: 40em;
+  background-image: 
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
+    url('images/landscape.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.header-title {
+  margin-top: 10em;
+}
+
+.header-title h1 {
+  color: var(--gray-ultra-light-color);
+  font-size: 10em;
+}
+
+.wave {
+  position: absolute;
+  bottom: -10px;
+  width:  100%;
+  height: 20em;
+}
+
+.register {
+  width: 100%;
+  padding-inline: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10em;
+}
+
+.register-form {
+  width: 15%;
+}
+
+.register-form h1 {
+  margin-bottom: 1em;
+}
+
+.register-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.2em;
+}
+
+.input-wrapper label {
+  font-size: 1.4em;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 1em;
+  border-radius: 10px;
+}
+
+/* Estilizacao da Tabela */
+.register-table-wrapper {
+  width: 65%;
+  max-height: 40em;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  background: #4A808C;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--gray-ultra-light-color);
+}
+
+table thead {
+  background-color: darkblue;
+}
+
+table thead th:first-child {
+  border-top-left-radius: 12px;
+}
+
+table thead th:last-child {
+  border-top-right-radius: 12px;
+}
+
+table thead tr th{
+  padding: 2.4rem 2rem;
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+table tbody tr:nth-child(even) td {
+  background-color: blue;
+}
+
+table tbody tr:last-child td:first-child{
+  border-bottom-left-radius: 12px;
+}
+
+table tbody tr:last-child td:last-child{
+  border-bottom-right-radius: 12px;
+}
+
+table tbody tr td{
+  padding: 2.4rem 2rem;
+  font-size: 1.4rem;
+  line-height: 160%;
+  text-align: center;
+  background-color: black;
+}
+
+.fishes {
+  height: 50em;
+  background-image: url(images/water.gif);
+}
+
+.wave-fishes {
+  position: absolute;
+  transform: rotate(180deg);
+  width:  100%;
+  height: 20em;
+}
+
