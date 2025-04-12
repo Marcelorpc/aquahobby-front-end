@@ -57,15 +57,15 @@ header {
   gap: 10em;
 }
 
-.register-form {
+.register-form-wrapper {
   width: 15%;
 }
 
-.register-form h1 {
+.register-form-wrapper h1 {
   margin-bottom: 1em;
 }
 
-.register-form form {
+.register-form-wrapper form {
   display: flex;
   flex-direction: column;
   gap: 1em;

@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
   <title>Aquahobby</title>
 </head>
 
@@ -23,9 +24,9 @@
 
   <main>
     <div class="register">
-      <div class="register-form">
+      <div class="register-form-wrapper">
         <h1>Cadastre seu aquário</h1>
-        <form action="">
+        <form id="register-form">
           <div class="input-wrapper">
             <label for="aqua-name">Nome</label>
             <input type="text" name="name" id="aqua-name" placeholder="Aquário Lagoa Azul" required>
@@ -42,7 +43,7 @@
             <label for="aqua-ph">PH</label>
             <input type="number" name="ph" id="aqua-ph" placeholder="6.5" required>
           </div>
-          <button>Cadastrar</button>
+          <button id="form-send-button" type="submit">Cadastrar</button>
         </form>
       </div>
       <div class="register-table-wrapper">
@@ -53,43 +54,30 @@
               <th>Volume (L)</th>
               <th>Temperatura (C°)</th>
               <th>PH</th>
-              <th></th>
-              <th></th>
+              <th>Ações</th>
             </tr>
           </thead>
-    
+
           <tbody>
             <tr>
               <td>Aquário Lagoa Azul</td>
               <td>500L</td>
               <td>22°</td>
               <td>7</td>
-              <td>editar</td>
-              <td>remover</td>
+              <td>
+                <button>Editar</button>
+                <button>Remover</button>
+              </td>
             </tr>
             <tr>
               <td>Aquário Lagoa Azul</td>
               <td>500L</td>
               <td>22°</td>
               <td>7</td>
-              <td>editar</td>
-              <td>remover</td>
-            </tr>
-            <tr>
-              <td>Aquário Lagoa Azul</td>
-              <td>500L</td>
-              <td>22°</td>
-              <td>7</td>
-              <td>editar</td>
-              <td>remover</td>
-            </tr>
-            <tr>
-              <td>Aquário Lagoa Azul</td>
-              <td>500L</td>
-              <td>22°</td>
-              <td>7</td>
-              <td>editar</td>
-              <td>remover</td>
+              <td>
+                <button>Editar</button>
+                <button>Remover</button>
+              </td>
             </tr>
           </tbody>
         </table>
