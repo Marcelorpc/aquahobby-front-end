@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 async function fetchAquariums() {
   try {
     const response = await fetch('http://localhost:5000/aquarios');
-    
+
     if (!response.ok) {
       throw new Error(`Erro na requisição: ${response.status}`);
     }
@@ -71,5 +71,53 @@ async function removeAquarium(nome) {
 
   } catch (error) {
     console.error('Erro:', error.message);
+  }
+}
+
+const registerForm = document.getElementById("register-form")
+registerForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const nome = document.getElementById("aqua-name").value;
+  const volume = document.getElementById("aqua-volume").value;
+  const temperatura = document.getElementById("aqua-temperature").value;
+  const ph = document.getElementById("aqua-ph").value;
+
+  const aquario = {
+    nome: nome,
+    volume: volume,
+    temperatura: temperatura,
+    ph: ph
+  };
+
+  await registerAquarium(aquario);
+  // Atualiza a lista de aquários e renderiza a tabela
+  const aquariums = await fetchAquariums();
+  renderAquariumTable(aquariums);
+  event.target.reset();
+});
+
+// Função para cadastrar aquário no banco
+async function registerAquarium(aquario) {
+  try {
+    const response = await fetch('http://localhost:5000/aquario', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(aquario)
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro ao cadastrar o aquário: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('Aquário cadastrado:', data);
+
+    alert('Aquário cadastrado com sucesso!');
+  } catch (error) {
+    console.error('Erro:', error.message);
+    alert('Erro ao cadastrar o aquário. Tente novamente.');
   }
 }
