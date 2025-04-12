@@ -39,11 +39,37 @@ function renderAquariumTable(aquariums) {
       <td>${aquario.temperatura}°</td>
       <td>${aquario.ph}</td>
       <td>
-        <button onclick="editarAquario(${aquario.id})">Editar</button>
-        <button onclick="removerAquario(${aquario.id})">Remover</button>
+        <button onclick="editAquarium('${aquario.id}')">Editar</button>
+        <button onclick="removeAquarium('${aquario.nome}')">Remover</button>
       </td>
     `;
 
     tableBody.appendChild(tr);
   });
+}
+
+// Função para remover aquário do banco
+async function removeAquarium(nome) {
+  try {
+    const response = await fetch(`http://localhost:5000/aquario?nome=${nome}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro ao remover o aquário: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('Aquário removido:', data);
+
+    // Atualiza a lista de aquários e renderiza a tabela
+    const aquariums = await fetchAquariums();
+    renderAquariumTable(aquariums);
+
+  } catch (error) {
+    console.error('Erro:', error.message);
+  }
 }
