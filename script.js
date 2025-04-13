@@ -131,6 +131,7 @@ function renderAquariumTable(aquariums) {
   });
 }
 
+// Função para exibir modal de mensagens
 function showModal(message) {
   const modal = document.getElementById('modal');
   const messageElement = document.getElementById('modal-message');
@@ -144,6 +145,7 @@ function showModal(message) {
   };
 }
 
+// Função para exibir modal de edição de aquário
 function editAquariumModal(nome) {
   const modalContent = document.getElementById("edit-modal-content");
 
@@ -183,6 +185,7 @@ function editAquariumModal(nome) {
   };
 }
 
+// Função para enviar as edições do aquário
 async function sendEditForm(aquaName) {
   const nome = document.getElementById("edit-aqua-name").value.trim();
   const volume = document.getElementById("edit-aqua-volume").value.trim();
@@ -214,5 +217,35 @@ async function sendEditForm(aquaName) {
     showModal("Aquário alterado com sucesso!");
   } catch (error) {
     showModal(error.message);
+  }
+}
+
+// Função que pesquisa um aquário pelo nome e retorna se existe
+async function searchAquarium() {
+  const nome = document.getElementById("aqua-name").value.trim();
+  const nameAvailability = document.getElementById("name-availability");
+
+  if(!nome || nome === "") {
+    nameAvailability.innerHTML = `----`
+    return
+  }
+
+  try {
+    const response = await fetch(`http://localhost:5000/aquario?nome=${nome}`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    const data = await response.json();
+
+    if (response.ok) {
+      nameAvailability.innerHTML = `indisponível!`
+    } else {
+      nameAvailability.innerHTML = `disponível!`
+    }
+
+  } catch (error) {
+    console.error(error.message);
   }
 }
