@@ -320,3 +320,54 @@ footer {
   padding: 1em;
   border-radius: 10px;
 }
+
+.edit-modal-buttons-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+
+/*Estiliza o Modal de remover aquário*/
+#remove-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.remove-modal-box {
+  background-color: var(--gray-ultra-light-color);
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  max-width: 40em;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.remove-modal-box h1 {
+  margin-bottom: 2rem;
+}
+
+.remove-modal-buttons-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+#remove-modal:not(.hidden) {
+  display: flex;
+}

@@ -123,66 +123,12 @@ function renderAquariumTable(aquariums) {
       <td>${aquario.ph}</td>
       <td class="td-action-buttons-wrapper">
         <button onclick="editAquariumModal('${aquario.nome}')">Editar</button>
-        <button onclick="removeAquarium('${aquario.nome}')">Remover</button>
+        <button onclick="confirmRemoveModal('${aquario.nome}')">Remover</button>
       </td>
     `;
 
     tableBody.appendChild(tr);
   });
-}
-
-// Função para exibir modal de mensagens
-function showModal(message) {
-  const modal = document.getElementById('modal');
-  const messageElement = document.getElementById('modal-message');
-  const closeButton = document.getElementById('close-modal');
-
-  messageElement.textContent = message;
-  modal.classList.remove('hidden');
-
-  closeButton.onclick = () => {
-    modal.classList.add('hidden');
-  };
-}
-
-// Função para exibir modal de edição de aquário
-function editAquariumModal(nome) {
-  const modalContent = document.getElementById("edit-modal-content");
-
-  modalContent.innerHTML = `
-    <form id="edit-form">
-      <div class="edit-input-wrapper">
-        <label for="edit-aqua-name">Nome</label>
-        <input type="text" name="name" id="edit-aqua-name" placeholder="Aquário Lagoa Azul">
-      </div>
-      <div class="edit-input-wrapper">
-        <label for="edit-aqua-volume">Volume (L)</label>
-        <input type="number" name="volume" id="edit-aqua-volume" placeholder="500">
-      </div>
-      <div class="edit-input-wrapper">
-        <label for="edit-aqua-temperature">Temperatura (C°)</label>
-        <input type="number" step="any" name="temperatura" id="edit-aqua-temperature" placeholder="22.5">
-      </div>
-      <div class="edit-input-wrapper">
-        <label for="edit-aqua-ph">PH</label>
-        <input type="number" step="any" name="ph" id="edit-aqua-ph" placeholder="6.5">
-      </div>
-    </form>
-  `;
-
-  const modal = document.getElementById("edit-modal");
-  modal.classList.remove("edit-hidden");
-
-  const editSendButton = document.getElementById("edit-form-submit");
-  editSendButton.onclick = () => {
-    modal.classList.add("edit-hidden");
-    sendEditForm(nome);
-  };
-
-  const closeButton = document.getElementById("edit-close-modal");
-  closeButton.onclick = () => {
-    modal.classList.add("edit-hidden");
-  };
 }
 
 // Função para enviar as edições do aquário
@@ -250,4 +196,79 @@ async function searchAquarium() {
   } catch (error) {
     console.error(error.message);
   }
+}
+
+// Função para exibir modal de mensagens
+function showModal(message) {
+  const modal = document.getElementById('modal');
+  const messageElement = document.getElementById('modal-message');
+  const closeButton = document.getElementById('close-modal');
+
+  messageElement.textContent = message;
+  modal.classList.remove('hidden');
+
+  closeButton.onclick = () => {
+    modal.classList.add('hidden');
+  };
+}
+
+// Função para exibir modal de edição de aquário
+function editAquariumModal(nome) {
+  const modalContent = document.getElementById("edit-modal-content");
+
+  modalContent.innerHTML = `
+    <form id="edit-form">
+      <div class="edit-input-wrapper">
+        <label for="edit-aqua-name">Nome</label>
+        <input type="text" name="name" id="edit-aqua-name" placeholder="Aquário Lagoa Azul">
+      </div>
+      <div class="edit-input-wrapper">
+        <label for="edit-aqua-volume">Volume (L)</label>
+        <input type="number" name="volume" id="edit-aqua-volume" placeholder="500">
+      </div>
+      <div class="edit-input-wrapper">
+        <label for="edit-aqua-temperature">Temperatura (C°)</label>
+        <input type="number" step="any" name="temperatura" id="edit-aqua-temperature" placeholder="22.5">
+      </div>
+      <div class="edit-input-wrapper">
+        <label for="edit-aqua-ph">PH</label>
+        <input type="number" step="any" name="ph" id="edit-aqua-ph" placeholder="6.5">
+      </div>
+    </form>
+  `;
+
+  const modal = document.getElementById("edit-modal");
+  modal.classList.remove("edit-hidden");
+
+  const editSendButton = document.getElementById("edit-form-submit");
+  editSendButton.onclick = () => {
+    modal.classList.add("edit-hidden");
+    sendEditForm(nome);
+  };
+
+  const closeButton = document.getElementById("edit-close-modal");
+  closeButton.onclick = () => {
+    modal.classList.add("edit-hidden");
+  };
+}
+
+// Função para exibir o modal de remover aquário
+function confirmRemoveModal(nome) {
+  const removeModal = document.getElementById("remove-modal");
+  const confirmButton = document.getElementById("confirm-remove");
+  const closeModalButton = document.getElementById("close-remove-modal");
+  const confirmTitle = document.getElementById("remove-modal-message");
+  
+  removeModal.classList.remove('hidden');
+
+  confirmTitle.innerText = `Deseja remover o aquário "${nome}"?`
+
+  confirmButton.onclick = () => {
+    removeAquarium(nome);
+    removeModal.classList.add('hidden');
+  };
+
+  closeModalButton.onclick = () => {
+    removeModal.classList.add('hidden');
+  };
 }
