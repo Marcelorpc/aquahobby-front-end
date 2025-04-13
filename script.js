@@ -161,11 +161,11 @@ function editAquariumModal(nome) {
       </div>
       <div class="edit-input-wrapper">
         <label for="edit-aqua-temperature">Temperatura (C°)</label>
-        <input type="number" name="temperatura" id="edit-aqua-temperature" placeholder="22.5">
+        <input type="number" step="any" name="temperatura" id="edit-aqua-temperature" placeholder="22.5">
       </div>
       <div class="edit-input-wrapper">
         <label for="edit-aqua-ph">PH</label>
-        <input type="number" name="ph" id="edit-aqua-ph" placeholder="6.5">
+        <input type="number" step="any" name="ph" id="edit-aqua-ph" placeholder="6.5">
       </div>
     </form>
   `;
@@ -241,8 +241,10 @@ async function searchAquarium() {
 
     if (response.ok) {
       nameAvailability.innerHTML = `Nome indisponível!`
+      nameAvailability.classList.add('name-availability-red')
     } else {
       nameAvailability.innerHTML = `Nome disponível!`
+      nameAvailability.classList.add('name-availability-green')
     }
 
   } catch (error) {

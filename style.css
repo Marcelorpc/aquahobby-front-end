@@ -16,6 +16,10 @@
 }
 
 body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: var(--gray-ultra-light-color);
 }
 
@@ -25,13 +29,16 @@ button {
   background-color: #0077b6 ;
   padding: 0.5rem 1rem;
   border-radius: 6px;
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.7);
 }
 
 button:hover {
   background-color: #023e8a;
   border: 1px solid #0077b6;
   cursor: pointer;
+  box-shadow: 2px 3px 3px 0px rgba(0,0,0,0);
 }
+
 
 /*Estiliza o cabeçalho*/
 header {
@@ -64,6 +71,7 @@ header {
   height: 20em;
   overflow: visible;
 }
+
 
 /*Estiliza o formulário de registro*/
 .register {
@@ -124,10 +132,19 @@ header {
   width: 8rem;
 }
 
+.name-availability-green {
+  color: green;
+}
+
+.name-availability-red {
+  color: red;
+}
+
+
 /* Estiliza a Tabela */
 .register-table-wrapper {
   width: 60rem;
-  height: 50em;  
+  max-height: 50em;  
   overflow-y: scroll;
   border-radius: 20px;
 }
@@ -193,10 +210,12 @@ table tbody tr td{
   width: 10rem;
 }
 
+
 /*Estiliza o footer*/
 footer {
   height: 20rem;
   background-image: url(images/water.gif);
+  margin-top: 1rem;
 }
 
 .footer-bg {
@@ -206,6 +225,7 @@ footer {
   height: 20em;
 }
 
+
 /*Estiliza o Modal de mensagens*/
 #modal {
   position: fixed;
@@ -214,6 +234,7 @@ footer {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
   align-items: center;
   justify-content: center;
   z-index: 9999;
@@ -229,6 +250,10 @@ footer {
   text-align: center;
 }
 
+.modal-box h1 {
+  margin-bottom: 2rem;
+}
+
 .hidden {
   display: none;
 }
@@ -236,6 +261,7 @@ footer {
 #modal:not(.hidden) {
   display: flex;
 }
+
 
 /*Estiliza o Modal de edição da tabela*/
 #edit-modal {
@@ -245,6 +271,7 @@ footer {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
   align-items: center;
   justify-content: center;
   z-index: 9999;
