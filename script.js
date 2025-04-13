@@ -122,7 +122,7 @@ function renderAquariumTable(aquariums) {
       <td>${aquario.temperatura}</td>
       <td>${aquario.ph}</td>
       <td class="td-action-buttons-wrapper">
-        <button onclick="editAquariumModal('${aquario.nome}')">Editar</button>
+        <button onclick="editAquariumModal('${aquario.nome}', '${aquario.volume}', '${aquario.temperatura}', '${aquario.ph}')">Editar</button>
         <button onclick="confirmRemoveModal('${aquario.nome}')">Remover</button>
       </td>
     `;
@@ -213,26 +213,26 @@ function showModal(message) {
 }
 
 // Função para exibir modal de edição de aquário
-function editAquariumModal(nome) {
+function editAquariumModal(nome, volume, temperatura, ph) {
   const modalContent = document.getElementById("edit-modal-content");
 
   modalContent.innerHTML = `
     <form id="edit-form">
       <div class="edit-input-wrapper">
         <label for="edit-aqua-name">Nome</label>
-        <input type="text" name="name" id="edit-aqua-name" placeholder="Aquário Lagoa Azul">
+        <input type="text" name="nome" id="edit-aqua-name" placeholder="Aquário Lagoa Azul" value=${nome}>
       </div>
       <div class="edit-input-wrapper">
         <label for="edit-aqua-volume">Volume (L)</label>
-        <input type="number" name="volume" id="edit-aqua-volume" placeholder="500">
+        <input type="number" name="volume" id="edit-aqua-volume" placeholder="500"  value=${volume}>
       </div>
       <div class="edit-input-wrapper">
         <label for="edit-aqua-temperature">Temperatura (C°)</label>
-        <input type="number" step="any" name="temperatura" id="edit-aqua-temperature" placeholder="22.5">
+        <input type="number" step="any" name="temperatura" id="edit-aqua-temperature" placeholder="22.5"  value=${temperatura}>
       </div>
       <div class="edit-input-wrapper">
         <label for="edit-aqua-ph">PH</label>
-        <input type="number" step="any" name="ph" id="edit-aqua-ph" placeholder="6.5">
+        <input type="number" step="any" name="ph" id="edit-aqua-ph" placeholder="6.5"  value=${ph}>
       </div>
     </form>
   `;
