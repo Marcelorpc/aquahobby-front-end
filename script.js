@@ -1,3 +1,4 @@
+// Função chamada ao carregar
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const aquariums = await fetchAquariums();
@@ -9,71 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// Função para buscar a lista de quarios da API
-async function fetchAquariums() {
-  try {
-    const response = await fetch('http://localhost:5000/aquarios');
-
-    if (!response.ok) {
-      throw new Error(`Erro na requisição: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data.aquarios;
-  } catch (error) {
-    console.error('Erro:', error.message);
-  }
-}
-
-// Função para montar a tabela
-function renderAquariumTable(aquariums) {
-  const tableBody = document.querySelector("tbody");
-  tableBody.innerHTML = "";
-
-  aquariums.forEach(aquario => {
-    const tr = document.createElement("tr");
-
-    tr.innerHTML = `
-      <td>${aquario.nome}</td>
-      <td>${aquario.volume}L</td>
-      <td>${aquario.temperatura}°</td>
-      <td>${aquario.ph}</td>
-      <td>
-        <button onclick="editAquarium('${aquario.id}')">Editar</button>
-        <button onclick="removeAquarium('${aquario.nome}')">Remover</button>
-      </td>
-    `;
-
-    tableBody.appendChild(tr);
-  });
-}
-
-// Função para remover aquário do banco
-async function removeAquarium(nome) {
-  try {
-    const response = await fetch(`http://localhost:5000/aquario?nome=${nome}`, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json'
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error(`Erro ao remover o aquário: ${response.status}`);
-    }
-
-    const data = await response.json();
-    console.log('Aquário removido:', data);
-
-    // Atualiza a lista de aquários e renderiza a tabela
-    const aquariums = await fetchAquariums();
-    renderAquariumTable(aquariums);
-
-  } catch (error) {
-    console.error('Erro:', error.message);
-  }
-}
-
+// Função chamada ao enviar o formulário
 const registerForm = document.getElementById("register-form")
 registerForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -97,6 +34,22 @@ registerForm.addEventListener("submit", async (event) => {
   event.target.reset();
 });
 
+// Função para buscar a lista de quarios da API
+async function fetchAquariums() {
+  try {
+    const response = await fetch('http://localhost:5000/aquarios');
+
+    if (!response.ok) {
+      throw new Error(`Erro na requisição: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.aquarios;
+  } catch (error) {
+    console.error('Erro:', error.message);
+  }
+}
+
 // Função para cadastrar aquário no banco
 async function registerAquarium(aquario) {
   try {
@@ -107,17 +60,75 @@ async function registerAquarium(aquario) {
       },
       body: JSON.stringify(aquario)
     });
+    const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(`Erro ao cadastrar o aquário: ${response.status}`);
+      throw new Error(data.message);
     }
 
-    const data = await response.json();
-    console.log('Aquário cadastrado:', data);
-
-    alert('Aquário cadastrado com sucesso!');
+    showModal("Aquário cadastrado com sucesso!");
   } catch (error) {
-    console.error('Erro:', error.message);
-    alert('Erro ao cadastrar o aquário. Tente novamente.');
+    showModal(error.message);
   }
+}
+
+// Função para remover aquário do banco
+async function removeAquarium(nome) {
+  try {
+    const response = await fetch(`http://localhost:5000/aquario?nome=${nome}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+
+    // Atualiza a lista de aquários e renderiza a tabela
+    const aquariums = await fetchAquariums();
+    renderAquariumTable(aquariums);
+    showModal("Aquário removido com sucesso!");
+  } catch (error) {
+    showModal(error.message);
+  }
+}
+
+// Função para montar a tabela
+function renderAquariumTable(aquariums) {
+  const tableBody = document.querySelector("tbody");
+  tableBody.innerHTML = "";
+
+  aquariums.forEach(aquario => {
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+      <td>${aquario.nome}</td>
+      <td>${aquario.volume}L</td>
+      <td>${aquario.temperatura}°</td>
+      <td>${aquario.ph}</td>
+      <td class="td-action-buttons-wrapper">
+        <button onclick="editAquarium('${aquario.id}')">Editar</button>
+        <button onclick="removeAquarium('${aquario.nome}')">Remover</button>
+      </td>
+    `;
+
+    tableBody.appendChild(tr);
+  });
+}
+
+function showModal(message) {
+  const modal = document.getElementById('modal');
+  const messageElement = document.getElementById('modal-message');
+  const closeButton = document.getElementById('close-modal');
+
+  messageElement.textContent = message;
+  modal.classList.remove('hidden');
+
+  closeButton.onclick = () => {
+    modal.classList.add('hidden');
+  };
 }
