@@ -118,8 +118,8 @@ function renderAquariumTable(aquariums) {
 
     tr.innerHTML = `
       <td>${aquario.nome}</td>
-      <td>${aquario.volume}L</td>
-      <td>${aquario.temperatura}°</td>
+      <td>${aquario.volume}</td>
+      <td>${aquario.temperatura}</td>
       <td>${aquario.ph}</td>
       <td class="td-action-buttons-wrapper">
         <button onclick="editAquariumModal('${aquario.nome}')">Editar</button>
@@ -240,9 +240,9 @@ async function searchAquarium() {
     const data = await response.json();
 
     if (response.ok) {
-      nameAvailability.innerHTML = `indisponível!`
+      nameAvailability.innerHTML = `Nome indisponível!`
     } else {
-      nameAvailability.innerHTML = `disponível!`
+      nameAvailability.innerHTML = `Nome disponível!`
     }
 
   } catch (error) {

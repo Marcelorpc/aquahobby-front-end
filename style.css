@@ -19,6 +19,20 @@ body {
   background-color: var(--gray-ultra-light-color);
 }
 
+button {
+  border: 1px solid #023e8a;
+  color: white;
+  background-color: #0077b6 ;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+button:hover {
+  background-color: #023e8a;
+  border: 1px solid #0077b6;
+  cursor: pointer;
+}
+
 /*Estiliza o cabeçalho*/
 header {
   height: 40em;
@@ -62,7 +76,7 @@ header {
 }
 
 .register-form-wrapper {
-  width: 15%;
+  width: 25rem;
 }
 
 .register-form-wrapper h1 {
@@ -94,6 +108,7 @@ header {
 }
 
 .search-aqua-name {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -105,10 +120,14 @@ header {
   font-size: 1.3rem;
 }
 
+.search-aqua-name button {
+  width: 8rem;
+}
+
 /* Estiliza a Tabela */
 .register-table-wrapper {
-  width: 65%;
-  max-height: 40em;  
+  width: 60rem;
+  height: 50em;  
   overflow-y: scroll;
   border-radius: 20px;
 }
@@ -130,7 +149,7 @@ table {
 }
 
 table thead {
-  background-color: darkblue;
+  background-color: #002b53;
 }
 
 table thead tr th{
@@ -140,7 +159,7 @@ table thead tr th{
 }
 
 table tbody tr:nth-child(even) td {
-  background-color: blue;
+  background-color: #0d3b66;
 }
 
 table tbody tr:last-child td:first-child{
@@ -156,7 +175,7 @@ table tbody tr td{
   font-size: 1.4rem;
   line-height: 160%;
   text-align: center;
-  background-color: black;
+  background-color: #10477a;
 }
 
 .td-action-buttons-wrapper {
@@ -164,6 +183,10 @@ table tbody tr td{
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+}
+
+.td-action-buttons-wrapper button {
+  padding: 0.4rem 0.4rem;
 }
 
 .td-action-buttons-wrapper button {
