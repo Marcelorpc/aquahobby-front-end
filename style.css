@@ -198,3 +198,60 @@ footer {
 #modal:not(.hidden) {
   display: flex;
 }
+
+/*Estiliza o Modal de edição da tabela*/
+#edit-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.edit-modal-box {
+  background-color: var(--gray-ultra-light-color);
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  max-width: 40em;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.edit-hidden {
+  display: none;
+}
+
+#edit-modal:not(.edit-hidden) {
+  display: flex;
+}
+
+#edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.edit-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.2em;
+}
+
+.edit-input-wrapper label {
+  font-size: 1.4em;
+}
+
+.edit-input-wrapper input {
+  width: 100%;
+  padding: 1em;
+  border-radius: 10px;
+}
