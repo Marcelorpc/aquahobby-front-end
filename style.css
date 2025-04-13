@@ -371,3 +371,9 @@ footer {
 #remove-modal:not(.hidden) {
   display: flex;
 }
+
+@media (min-width: 2560px) {
+  body {
+    height: 100vh;
+  }
+}
